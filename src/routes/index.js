@@ -435,7 +435,7 @@ function mainRoutes (router, middleware, controllers) {
 
 module.exports = function (app, middleware) {
   mainRoutes(router, middleware, controllers)
-  app.use('/', router)
+  app.use('/tms', router)
 
   // Load Plugin routes
   const dive = require('dive')

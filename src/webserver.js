@@ -85,7 +85,7 @@ let port = nconf.get('port') || 8118
     app.set('view engine', 'hbs')
     hbsHelpers.register(hbs.handlebars)
 
-    app.use('/assets', express.static(path.join(__dirname, '../public/uploads/assets')))
+    app.use('/tms/assets', express.static(path.join(__dirname, '../public/uploads/assets')))
 
     app.use(express.static(path.join(__dirname, '../public')))
     app.use(favicon(path.join(__dirname, '../public/img/favicon.ico')))
@@ -106,10 +106,10 @@ let port = nconf.get('port') || 8118
     router.post('/install/existingdb', routeMiddleware.checkOrigin, controllers.install.existingdb)
     router.post('/install/restart', routeMiddleware.checkOrigin, controllers.install.restart)
 
-    app.use('/', router)
+    app.use('/tms', router)
 
     app.use((req, res) => {
-      return res.redirect('/install')
+      return res.redirect('/tms/install')
     })
 
     require('socket.io')(server)
